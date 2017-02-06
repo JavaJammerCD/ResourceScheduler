@@ -5,8 +5,10 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import com.bod.desk.Desk;
+import com.bod.employee.Employee;
 
 @Entity
 public class Reservation {
@@ -19,18 +21,22 @@ public class Reservation {
 
 	@ManyToOne
 	private Desk desk;
-	
-	public Reservation(){
-		
+
+	@OneToOne
+	private Employee employee;
+
+	public Reservation() {
+
 	}
 
-	public Reservation(int id, Date date, double start_time, double end_time, Desk desk) {
+	public Reservation(int id, Date date, double start_time, double end_time, Desk desk, Employee employee) {
 		super();
 		this.reservation_id = id;
 		this.date = date;
 		this.start_time = start_time;
 		this.end_time = end_time;
 		this.desk = desk;
+		this.employee = employee;
 	}
 
 	public Date getDate() {
@@ -39,6 +45,10 @@ public class Reservation {
 
 	public Desk getDesk() {
 		return desk;
+	}
+
+	public Employee getEmployee() {
+		return employee;
 	}
 
 	public double getEnd_time() {
@@ -59,6 +69,10 @@ public class Reservation {
 
 	public void setDesk(Desk desk) {
 		this.desk = desk;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	public void setEnd_time(double end_time) {
