@@ -11,10 +11,24 @@ public class ReservationService {
 	
 	@Autowired
 	private ReservationRepository rr;
+	
+	public List<Reservation> findAllReservations() {
+		List <Reservation> reservations = new ArrayList<>();
+		rr.findAll().forEach(reservations::add);
+		return reservations;
+	}
 
-	public List <Reservation> getAllReservations(Long deskId){
+	public List <Reservation> getAllReservationsForDesk(Long deskId){
 		List <Reservation> reservations = new ArrayList<>();
 		rr.findByDeskId(deskId).forEach(reservations::add);
 		return reservations;
 	}
+	
+	public void addReservation(Reservation r){
+		rr.save(r);
+	}
+
+
+	
+	
 }
